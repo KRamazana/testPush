@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    url: ${DATASOURCE_URL}
+    username: ${DATASOURCE_USER}
+    password: ${DATASOURCE_PASSWORD}
+    hikari:
+      maximum-pool-size: 30
+  application:
+    name: account-service
+springdoc:
+  api-docs:
+    enabled: false
+  swagger-ui:
+    url: /api-docs.yml
+server:
+  error:
+    include-message: always
+  servlet:
+    context-path: /account
+  shutdown: graceful

@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: ${DATASOURCE_URL:jdbc:postgresql://localhost:5432}
+    username: ${DATASOURCE_USER:applusr}
+    password: ${DATASOURCE_PASSWORD:applusr}
+  jpa:
+    hibernate.ddl-auto: validate
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  flyway:
+    enabled: true
+    url: ${DATASOURCE_URL:jdbc:postgresql://localhost:5432}
+    user: ${MIGRATION_USER:migrusr}
+    password: ${MIGRATION_PASSWORD:migrusr}
+    defaultSchema: ${MIGRATION_DB_SCHEMA:application}
+    placeholders:
+      dbSchemaUser: ${DATASOURCE_USER:applusr}
+      app_password: "'${DATASOURCE_PASSWORD:applusr}'"
+      appDb: ${DATASOURCE_DB:application}
+migration:
+  validation:
+    enabled: ${MIGRATION_VALIDATION_ENABLED:true}

@@ -1,0 +1,96 @@
+openapi: 3.0.0
+info:
+  title: 'API Account-service'
+  version: 1.0.0
+  description: |
+    # Тестовое задание
+    ```Условия:```
+    #### Необходимо реализовать сервис управления баллами клиента (платёжный инструмент). Начисление баллов должно быть доступно ограниченному количеству потребителей сервиса. Списание баллов должно быть доступно широкому кругу потребителей (открытое API). 
+    ```Ограничение:```
+    #### Нельзя допустить отрицательный баланс баллов клиента. Требования к реализации: java 11, Spring Boot. У проверяющего есть только java, поэтому решение должно запускаться из коробки.
+tags:
+  - name: addPoints
+    description: Накинуть баллы
+  - name: deduct
+    description: Снять баллы
+  - name: clientInfo
+    description: Информация о клиенте
+paths:
+  /points/add:
+    post:
+      tags:
+        - addPoints
+      summary: Накинуть баллы клиенту
+      parameters:
+        - name: clientId
+          in: query
+          required: true
+          schema:
+            type: integer
+        - name: points
+          in: query
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Баллы накинуты
+        '401':
+          description: Not access add point in this account
+  /points/deduct:
+    post:
+      tags:
+        - deduct
+      summary: Снятие баллов клиента
+      parameters:
+        - name: clientId
+          in: query
+          required: true
+          schema:
+            type: integer
+        - name: points
+          in: query
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Баллы сняты
+        '400':
+          description: Not enough points to deduct
+        '404':
+          description: Client not fount
+  /points/{clientId}:
+    get:
+      tags:
+        - clientInfo
+      summary: Предоставить информацию по клиенту
+      parameters:
+        - name: clientId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Инфа по клиенту предоставлена
+        '404':
+          description: Client not found

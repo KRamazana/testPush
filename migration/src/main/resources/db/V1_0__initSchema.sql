@@ -1,0 +1,1 @@
+GRANT CONNECT, TEMPORARY, TEMP ON DATABASE ${appDb} TO ${dbSchemaUser};
