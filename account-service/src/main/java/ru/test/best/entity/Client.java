@@ -27,11 +27,11 @@ import javax.validation.constraints.NotNull;
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int clientId;
+    private Long clientId;
 
     @NotNull
     @Column(name = "points")
-    private int points;
+    private Long points;
 
     @NotNull
     @Column(name = "name")

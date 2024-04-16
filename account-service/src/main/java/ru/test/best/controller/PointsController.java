@@ -19,17 +19,17 @@ public class PointsController {
     private final PointsService pointsService;
 
     @PostMapping("/add")
-    public AccountDto addPoints(@RequestParam int clientId, @RequestParam int points) {
+    public AccountDto addPoints(@RequestParam Long clientId, @RequestParam Long points) {
         return pointsService.addPoints(clientId, points);
     }
 
     @PostMapping("/deduct")
-    public AccountDto deductPoints(@RequestParam int clientId, @RequestParam int points) {
+    public AccountDto deductPoints(@RequestParam Long clientId, @RequestParam Long points) {
         return pointsService.deductPoints(clientId, points);
     }
 
     @GetMapping("/{clientId}")
-    public Client getClient(@PathVariable int clientId) {
+    public Client getClient(@PathVariable Long clientId) {
         return pointsService.getClient(clientId);
     }
 }

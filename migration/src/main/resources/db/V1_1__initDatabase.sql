@@ -1,12 +1,12 @@
 CREATE TABLE IF NOT EXISTS clients (
     id                 varchar(255) not null,
-    points             int8,
+    points             bigint,
     client_name        varchar(255) not null,
-    client_role_id     int8;
+    client_role_id     bigint;
 );
 
 CREATE TABLE IF NOT EXISTS roles (
-    id                 int8 not null,
+    id                 bigint not null,
     client_role        varchar(255) unique;
 );
 
